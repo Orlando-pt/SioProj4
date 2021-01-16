@@ -1,0 +1,64 @@
+primeiras streams tcp para efetuar login:
+-- o atacante tentou algumas combinacoes para retirar informacao que o podesse ajudar a passar o login
+
+-- acabou por conseguir ultrapassar o login colocando usermail igual a "' OR 1=1 --"
+
+A partir da stream 3:
+-- experimentou colocar alguns mails que encontrou expostos no site e, tentou entao entrar fazendo-se passar por essa pessoas
+-- conseguiu entrar por causa das vulnerabilidades existentes no query do login
+
+A partir da stream 8:
+-- virou-se para o separador dos produtos, onde ha a vulnerabilidade do lang
+-- Mas nao descobriu nd promissor
+
+A partir da stream 10:
+-- muito provavelmente, a partir duma ferramenta como o mikto, conseguiu encontrar o ficheiro com as informacoes do sistema (info.php)
+-- Tambem descobriu o blog.php
+-- a pasta dos downloads
+
+Stream 13:
+-- viu que dava para fazer download do brochure.php
+
+A partir da Stream 15:
+-- tentou explorar a vulnerabilidade que se encontra no type e efetuou um union simplesmente para ver se o query funfava
+-- como funcionou, de seguida foi ver o nome das tabelas que existiam na bd a partir do informationSchema
+-- andou a ver qual seria o melhor sitio para colocar essa informacao do union select 1, ?, 2,...
+-- verificou que nos details tambem era possivel fazer sql injection, a partir do prod=
+
+Na stream 20:
+-- tentou fazer com que o mysql escreve-se um ficheiro no dir /var/tmp/x.txt
+
+Na stream 22:
+-- foram retornados bytes mais promissores, portanto ele deve ter recebido uma resposta com boa info
+-- depois tentou aceder ao ficheiro q tinha tentado escrever, mas sem sucesso
+-- voltou a tentar e nada
+
+A partir da stream 26:
+-- retornou o ficheiro de download.php, sem ter recebido grande coisa
+-- voltou a concentrar-se no download que dava para efetuar no site, desta vez mais afincadamente
+-- percebeu que os ficheiros php q o servidor estava a usar se encontravam no diretorio anterior em relacao ao caminho para onde se tinha especificado o diretorio dos downloads, e, a partir dai foi logo buscar o php do index
+-- tentou retornar o ficheiro que tinha escrito atraves de sql injection mas n teve la grande sucesso (acho eu)
+
+A partir da stream 31:
+-- fez download o ficheiro que possuia a configuracao utilizada para aceder a bd
+-- tmb fez do ficheiro de display, que tinha info importante sobre como o servidor renderizava os a pagina com os produtos, principalmente o facto de em $lang se estar a utilizar o include da variavel que so por si e perigoso
+
+A partir da stream 40:
+-- tentou explorar a vulnerabilidade de lang
+-- /display.php?type=1&lang=php://filter/read=convert.base64-encode/resource=index.php
+-- aqui tentou verificar se era possivel incluir na pagina a ser renderizada o html do index
+-- e conseguiu, na resposta esta o index codificado para base64
+
+Stream 41:
+-- tentou efetuar uma ligacao ssh ao servidor
+-- por volta das 10h, tmb tem resultados engracados no /var/log/auth.log
+-- n conseguiu reter nenhuma informacao daqui
+-- ele tentou usar o php para chegar ao cmd mas falhou a autenticacao
+
+Stream 42:
+-- conseguiu ver o conteudo do ficheiro e ainda passar a saber todos os diretorios da maquina com ls /
+
+
+Stream 44:
+-- como no auth.log nao teve sorte, experimentou agr no /var/log/apache2/access.log
+-- e deve ter conseguido retornar aquilo que queria
