@@ -60,5 +60,72 @@ Stream 42:
 
 
 Stream 44:
--- como no auth.log nao teve sorte, experimentou agr no /var/log/apache2/access.log
--- e deve ter conseguido retornar aquilo que queria
+-- para /var/log/apache2/access.log&cmd=ls /
+-- ja sabia os diretorios mas agr tmb sabe os logs do servidor apache
+
+Stream 45:
+-- /display.php?type=1&lang=/var/log/apache2/access.log&cmd=whoami
+-- n vi que este comando tenha sido executado com sucesso, mas acho q nao. so houve info relativa ao ficheiro
+
+Stream 46:
+-- conseguiu obter a info dos 2 ficheiros mas deve ter ficado desiludido pq n tinha la grande coisa (acho eu), este ficheiro costuma ter logins e assim i guess (verificar depois)
+
+Stream 47:
+-- conseguiu saber o sistema Linux cyberdyne 5.9.0.5-....
+
+Stream 48:
+-- retornou a info de todos os device que estao associados a maquina
+
+Stream 49:
+-- um dos device era o docker portanto foi cheirar que processos haviam associados ao docker
+-- acho q tmb n havia nd aqui de interessante
+
+Stream 50:
+-- Passa a saber basicamente todos os ficheiros que existem na maquina
+-- o mount e para o find n ir para diretorios de outros fileSystem
+
+Stream 51:
+-- descobrir o que pode executar como superuser (sudo p.e)
+
+Stream 52:
+-- retornar info sobre o sistema, como por exemplo os dispositivos de rede, pci devices
+
+Stream 53:
+-- acho q n retornou nd
+
+Stream 54:
+-- alguma coisa perigosa esta a acontecer pq o servidor esta a disponibilizar dados ao cliente
+
+Stream 55:
+-- ir buscar atraves dum curl um ficheiro malicioso e colocar em /tmp/lspci
+-- isto e um comando linux que imprime informacoes importantes sobre o so, mais em concreto, imprime detalhes sobre barramentos e todos os dispositivos pci no sistema.
+
+Stream 56:
+-- e o ficheiro a ser transferido
+
+Stream 57:
+-- adiciona a permissao para executar o ficheiro q acabou de colocar na maquina
+
+Stream 58
+-- sysinfo 2>&1 === redirecionar o resultado para o stdout
+-- recebe a info do sysinfo
+
+Stream 59
+-- foi inspecionar os perfis de AppArmor que existiam
+
+Stream 60
+-- quis saber em especifico qual era o perfil de usr.sbin.sysinfo
+
+Stream 61
+-- ir buscar info sobre o que estava no diretorio /usr/local, incluindo permissoes
+
+Stream 62
+-- copia o ficheiro mau que tinha passado para a maquina atraves de curl. E copia-o para /usr/local/bin
+
+Stream 63:
+-- n percebi bem o q ele faz aqui
+-- estaria a atualizar a path, mas eu n percebo pq esta a redirecionar o resultado para o stdout
+-- acho que faz download de mais malware
+
+Stream 64:
+-- Transfere-se um ficheiro a dizer que ja estas Candido
